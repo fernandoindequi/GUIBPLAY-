@@ -3,60 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Hub</title>
-
-    <!-- Include Phaser 3 Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.js"></script>
-
+    <title>GUIB Game Hub</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #clock {
+            font-size: 2em;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+        .viewport {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .page {
+            min-width: 100%;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: #f0f0f0;
-            margin: 0;
         }
-        #game-container {
-            width: 800px;
-            height: 600px;
-            overflow: hidden;
-            border: 2px solid #000;
-            background: #ffffff;
+        footer {
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div id="game-container"></div>
-
+    <div id="clock"></div>
+    <div class="viewport">
+        <div class="page">Page 1: Game 1</div>
+        <div class="page">Page 2: Game 2</div>
+        <div class="page">Page 3: Game 3</div>
+        <div class="page">Page 4: Game 4</div>
+        <div class="page">Page 5: Game 5</div>
+    </div>
+    <div class="shop">
+        <h2>Shop</h2>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+            <li>Item 6</li>
+        </ul>
+    </div>
+    <div class="themes">
+        <h2>Themes</h2>
+        <ul>
+            <li>Theme 1</li>
+            <li>Theme 2</li>
+            <li>Theme 3</li>
+            <li>Theme 4</li>
+        </ul>
+    </div>
+    <div class="stats">
+        <h2>Stats</h2>
+    </div>
+    <footer>
+        <div class="session-timer">Session Timer: <span id="timer">00:00</span></div>
+    </footer>
     <script>
-        const config = {
-            type: Phaser.AUTO,
-            width: 800,
-            height: 600,
-            scene: {
-                preload: preload,
-                create: create,
-                update: update
-            },
-            container: document.getElementById('game-container')
-        };
-
-        const game = new Phaser.Game(config);
-
-        function preload() {
-            // Load game assets here (example)
-            this.load.image('sky', 'assets/sky.png');
+        // Clock functionality
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toUTCString();
         }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-        function create() {
-            // Add game elements (example)
-            this.add.image(400, 300, 'sky');
-        }
-
-        function update() {
-            // Update game state
-        }
+        // Session Timer functionality
+        let seconds = 0;
+        setInterval(() => {
+            seconds++;
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            document.getElementById('timer').innerText = 
+                (minutes < 10 ? '0' : '') + minutes + ':' + (secs < 10 ? '0' : '') + secs;
+        }, 1000);
     </script>
 </body>
 </html>
