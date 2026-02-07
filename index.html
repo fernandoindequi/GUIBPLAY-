@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Hub</title>
+
+    <!-- Include Phaser 3 Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.js"></script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+            margin: 0;
+        }
+        #game-container {
+            width: 800px;
+            height: 600px;
+            overflow: hidden;
+            border: 2px solid #000;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            },
+            container: document.getElementById('game-container')
+        };
+
+        const game = new Phaser.Game(config);
+
+        function preload() {
+            // Load game assets here (example)
+            this.load.image('sky', 'assets/sky.png');
+        }
+
+        function create() {
+            // Add game elements (example)
+            this.add.image(400, 300, 'sky');
+        }
+
+        function update() {
+            // Update game state
+        }
+    </script>
+</body>
+</html>
